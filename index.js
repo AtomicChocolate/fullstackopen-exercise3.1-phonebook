@@ -43,4 +43,17 @@ app.get("/api/persons/:id", (request, response) => {
 		response.status(404).end();
 	}
 });
+app.delete("/api/persons/:id", (request, response) => {
+	const id = Number(request.params.id);
+	const person = data.find((person) => {
+		return person.id === id;
+	});
+	if (person) {
+		data.splice(data.indexOf(person), 1);
+		response.json(person);
+	} else {
+		response.status(404).end();
+	}
+	console.log(data);
+});
 app.listen(port, () => console.log(`We're listening on port ${port}!`));
