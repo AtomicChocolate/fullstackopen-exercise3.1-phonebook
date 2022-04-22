@@ -25,6 +25,11 @@ let data = [
 	},
 ];
 
-app.get("/", (req, res) => res.send("Hello world!"));
+app.get("/", (request, response) => response.send("Hello world!"));
+app.get("/info", (request, response) => {
+	response.send(
+		` Phonebook has info for ${data.length} people, as of ${new Date()}`
+	);
+});
 app.get("/api/persons", (request, response) => response.json(data));
 app.listen(port, () => console.log(`We're listening on port ${port}!`));
