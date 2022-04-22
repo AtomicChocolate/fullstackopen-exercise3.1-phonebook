@@ -32,4 +32,15 @@ app.get("/info", (request, response) => {
 	);
 });
 app.get("/api/persons", (request, response) => response.json(data));
+app.get("/api/persons/:id", (request, response) => {
+	const id = Number(request.params.id);
+	const person = data.find((person) => {
+		return person.id === id;
+	});
+	if (person) {
+		response.json(person);
+	} else {
+		response.status(404).end();
+	}
+});
 app.listen(port, () => console.log(`We're listening on port ${port}!`));
